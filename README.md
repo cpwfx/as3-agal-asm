@@ -1,7 +1,7 @@
 #AS3 AGAL Assembler#
 
 Small AS3 pseudo program to AGAL bytecode generator.
-Compatible with Adobe's AGALMiniAssembler version 1.
+Compatible with Adobe's AGALMiniAssembler v1.
 
 Usage:
 
