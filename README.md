@@ -9,7 +9,7 @@ Usage:
 	var program:Program3D = context.createProgram();
 	program.upload(shader.vertexProgram, shader.fragmentProgram);
 
-Shader program must inherit GpuAssembler and override vertex()/shader() methods:
+Shader program must inherit GpuAssembler and override vertex()/fragment() methods:
     
 	class MyShader extends GpuAssembler {
 		/**
