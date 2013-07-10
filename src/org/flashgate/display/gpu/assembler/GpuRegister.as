@@ -19,7 +19,7 @@ package org.flashgate.display.gpu.assembler {
 			this.field = field;
 		}
 
-		override flash_proxy function getProperty(name : *) : * {
+		flash_proxy function getProperty(name : *) : * {
 			return isNaN(name) ? new GpuRegister(shader, type, index, name) : new GpuRegister(shader, type, int(name));
 		}
 	}
