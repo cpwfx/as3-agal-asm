@@ -2,12 +2,20 @@
 
     <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
-    <target name="build">
-        <compc output="${basedir}/build/as3-agal-asm.swc">
+    <property name="build" location="${basedir}/build"/>
+    <property name="sources" location="${basedir}/src"/>
+
+    <target name="build" depends="clear">
+        <compc output="${build}/${ant.project.name}.swc">
             <debug>false</debug>
-            <source-path path-element="src"/>
-            <include-sources dir="src" includes="*"/>
+            <source-path path-element="${sources}"/>
+            <include-sources dir="${sources}" includes="*"/>
         </compc>
+    </target>
+
+    <target name="clear">
+        <delete dir="${build}"/>
+        <mkdir dir="${build}"/>
     </target>
 
 </project>
