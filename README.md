@@ -59,6 +59,6 @@ Conditional shader generation:
 
 Bug report:
 
-- [https://github.com/flashgate/as3-agal-asm/issues](https://github.com/flashgate/as3-agal-asm/issues)
+- [https://github.com/flashgate/as3-agal-asm/issues/new](https://github.com/flashgate/as3-agal-asm/issues/new)
  
 

@@ -1,0 +1,13 @@
+<project name="as3-agal-asm" basedir="." default="build">
+
+    <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+    <target name="build">
+        <compc output="${basedir}/build/as3-agal-asm.swc">
+            <debug>false</debug>
+            <source-path path-element="src"/>
+            <include-sources dir="src" includes="*"/>
+        </compc>
+    </target>
+
+</project>
