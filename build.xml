@@ -4,13 +4,29 @@
 
     <property name="build" location="${basedir}/build"/>
     <property name="sources" location="${basedir}/src"/>
+    <property name="tests" location="${basedir}/tests"/>
 
-    <target name="build" depends="clear">
+    <target name="build" depends="clear, test, clear, compile"/>
+
+    <target name="compile">
         <compc output="${build}/${ant.project.name}.swc">
             <debug>false</debug>
+            <size-report>${build}/size-report.xml</size-report>
             <source-path path-element="${sources}"/>
             <include-sources dir="${sources}" includes="*"/>
         </compc>
+    </target>
+
+    <target name="test">
+        <path id="flexunit">
+            <fileset dir="${FLEXUNIT_HOME}" includes="*.jar"/>
+        </path>
+        <taskdef resource="flexUnitTasks.tasks" classpathref="flexunit"/>
+        <flexunit workingdir="${build}" todir="${build}" localtrusted="true">
+            <source dir="${sources}"/>
+            <testsource dir="${tests}" includes="*.as"/>
+            <library dir="${FLEXUNIT_HOME}" includes="*.swc"/>
+        </flexunit>
     </target>
 
     <target name="clear">

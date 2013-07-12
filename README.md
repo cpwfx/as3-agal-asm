@@ -10,7 +10,7 @@ Usage:
 	program.upload(shader.vertexProgram, shader.fragmentProgram);
 
 Shader program must inherit GpuAssembler and override vertex()/fragment() methods:
-    
+	
 	class MyShader extends GpuAssembler {
 		/**
 		 * Vertex Shader Program
@@ -21,7 +21,7 @@ Shader program must inherit GpuAssembler and override vertex()/fragment() method
 		 * @param v		Variables
 		 * @param op	Output position
 		 */
-		override protected function vertex(va : GpuRegister, vc : GpuRegister, vt : GpuRegister, v : GpuRegister, op : GpuRegister) : void {
+		override protected function vertex(va:GpuRegister, vc:GpuRegister, vt:GpuRegister, v:GpuRegister, op:GpuRegister) : void {
 			mov(v, va[1]);
 			div(op, va, vc);
 
@@ -40,13 +40,13 @@ Shader program must inherit GpuAssembler and override vertex()/fragment() method
 		 * @param od	Depth output
 		 * @param oc	Output color
 		 */
-		override protected function fragment(v : GpuRegister, fc : GpuRegister, ft : GpuRegister, fs : GpuRegister, od : GpuRegister, oc : GpuRegister) : void {
+		override protected function fragment(v:GpuRegister, fc:GpuRegister, ft:GpuRegister, fs:GpuRegister, od:GpuRegister, oc:GpuRegister) : void {
 			tex(oc, v, fs, LINEAR);
 		}
 
 	}
 
-Conditional shader generation:
+Conditional program generation:
 
 	var useTextures:Boolean;
 	...
@@ -54,6 +54,25 @@ Conditional shader generation:
 		tex(oc, v, fs, LINEAR);
 	} else {
 		mov(oc, v);	
+	}
+	...
+
+Macros examples:
+
+	...
+	length(vt, vt[3]);
+	reflect(vt[1], va[1], vt[1]);
+	...
+	private function length(dest:GpuRegister, v:GpuRegister):void {
+		dp3(dest, v, v);
+		sqt(dest, dest);
+	}
+	...
+	private function reflect(dest:GpuRegister, v:GpuRegister, n:GpuRegister):void {
+		dp3(dest.x, x.xyz, n.xyz);
+		mul(dest, x.xyz, dest.x);
+		add(dest, dest, dest);
+		sub(dest, n.xyz, dest);
 	}
 	...
 
