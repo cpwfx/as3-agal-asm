@@ -110,7 +110,7 @@ public class GpuAssembler {
      * @param v     Variables
      * @param fc    Constants from Context3D::setProgramConstants()
      * @param ft    Temporary register
-     * @param fs    Sampler
+     * @param fs    Sampler from Context3D::setTextureAt()
      * @param od    Depth output
      * @param oc    Output color
      */
